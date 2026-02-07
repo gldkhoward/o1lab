@@ -386,9 +386,39 @@ function SpaceVisual() {
 }
 
 export default function Home() {
+  const mobileTapHintStorageKey = "o1lab-mobile-white-cue-dismissed";
   const cursorDotRef = useRef<HTMLDivElement>(null);
+  const heroRightRef = useRef<HTMLDivElement>(null);
+  const heroLeftRef = useRef<HTMLDivElement>(null);
+  const manifestoRef = useRef<HTMLElement>(null);
+  const journeyRef = useRef<HTMLElement>(null);
   const [layoutIdx, setLayoutIdx] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showTapHint, setShowTapHint] = useState(false);
+  const tapHintDismissed = useRef(false);
+  const [tapHintX] = useState(() => 20 + Math.random() * 60); // 20-80% from left
+
+  // Mobile: tap a hero panel to snap it full-screen
+  const handleHeroTap = useCallback((ref: React.RefObject<HTMLDivElement | null>) => {
+    if (typeof window === "undefined") return;
+    if (window.innerWidth > 768) return;
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  // Mobile: tap manifesto/journey to center on screen
+  const handleSectionTap = useCallback((ref: React.RefObject<HTMLElement | null>) => {
+    if (typeof window === "undefined") return;
+    if (window.innerWidth > 768) return;
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, []);
+
+  const dismissTapHint = useCallback(() => {
+    if (typeof window === "undefined") return;
+    if (window.innerWidth > 768) return;
+    tapHintDismissed.current = true;
+    setShowTapHint(false);
+    window.localStorage.setItem(mobileTapHintStorageKey, "1");
+  }, [mobileTapHintStorageKey]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -400,6 +430,31 @@ export default function Home() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
+  // Mobile: show tap hint while white hero panel is in view until user taps it.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.innerWidth > 768) return;
+    const el = heroLeftRef.current;
+    if (!el) return;
+
+    if (window.localStorage.getItem(mobileTapHintStorageKey) === "1") {
+      tapHintDismissed.current = true;
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (tapHintDismissed.current) {
+          setShowTapHint(false);
+          return;
+        }
+        setShowTapHint(entries[0].isIntersecting);
+      },
+      { threshold: 0.35 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [mobileTapHintStorageKey]);
 
   // Cycle through grid layouts
   useEffect(() => {
@@ -507,7 +562,14 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero">
-        <div className="hero-left">
+        <div
+          className="hero-left"
+          ref={heroLeftRef}
+          onClick={() => {
+            dismissTapHint();
+            handleHeroTap(heroLeftRef);
+          }}
+        >
           <h1 className="hero-title">
             <span className="o">o</span>1<br />
             lab
@@ -519,8 +581,24 @@ export default function Home() {
             <br />
             Sydney, AU
           </p>
+          {showTapHint && (
+            <div
+              className="tap-hint"
+              style={{ left: `${tapHintX}%` }}
+              onClick={(e) => {
+                e.stopPropagation();
+                dismissTapHint();
+                handleHeroTap(heroLeftRef);
+              }}
+            >
+              <span className="tap-hint-core"></span>
+              <span className="tap-hint-ring tap-hint-ring-1"></span>
+              <span className="tap-hint-ring tap-hint-ring-2"></span>
+              <span className="tap-hint-ring tap-hint-ring-3"></span>
+            </div>
+          )}
         </div>
-        <div className="hero-right">
+        <div className="hero-right" ref={heroRightRef} onClick={() => handleHeroTap(heroRightRef)}>
           <div className="geo-circle"></div>
           <div className="geo-circle"></div>
           <div className="geo-circle"></div>
@@ -593,7 +671,7 @@ export default function Home() {
       </div>
 
       {/* MANIFESTO */}
-      <section className="manifesto reveal" id="manifesto">
+      <section className="manifesto reveal" id="manifesto" ref={manifestoRef} onClick={() => handleSectionTap(manifestoRef)}>
         <p>
           We believe the biggest barrier to making{" "}
           <em>physical things</em> isn&apos;t talent, it&apos;s access. Access
@@ -655,7 +733,7 @@ export default function Home() {
       </section>
 
       {/* ZERO TO ONE */}
-      <section className="journey reveal" id="journey">
+      <section className="journey reveal" id="journey" ref={journeyRef} onClick={() => handleSectionTap(journeyRef)}>
         <div className="journey-inner">
           <h2 className="journey-header">
             <span className="zero"></span>

@@ -97,11 +97,13 @@ nav {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-areas: "left right";
   position: relative;
   overflow: hidden;
 }
 
 .hero-left {
+  grid-area: left;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -111,6 +113,7 @@ nav {
 }
 
 .hero-right {
+  grid-area: right;
   position: relative;
   background: var(--yellow);
   overflow: hidden;
@@ -1154,6 +1157,11 @@ footer .foot-col a:hover {
   color: var(--yellow);
 }
 
+/* ========== TAP HINT BUBBLE (mobile only) ========== */
+.tap-hint {
+  display: none;
+}
+
 /* ========== RESPONSIVE — TABLETS & MOBILE ========== */
 @media (max-width: 768px) {
 
@@ -1164,6 +1172,104 @@ footer .foot-col a:hover {
 
   body {
     cursor: auto;
+  }
+
+  /* ── Tap hint — breathing dot with ripple rings ── */
+  .tap-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 48px;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 64px;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 10;
+    animation: hint-appear 0.6s ease-out, hint-float 2.2s ease-in-out infinite 0.6s;
+  }
+
+  .tap-hint-core {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: var(--yellow);
+    border-radius: 50%;
+    animation: core-breathe 1.8s ease-in-out infinite;
+    box-shadow: 0 0 14px rgba(217, 184, 52, 0.5);
+  }
+
+  .tap-hint-ring {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--yellow);
+    border-radius: 50%;
+    opacity: 0;
+    animation: ring-expand 2.4s ease-out infinite;
+  }
+
+  .tap-hint-ring-2 {
+    animation-delay: 0.8s;
+  }
+
+  .tap-hint-ring-3 {
+    animation-delay: 1.6s;
+  }
+
+  @keyframes hint-appear {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.4);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+  }
+
+  @keyframes hint-float {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-5px);
+    }
+  }
+
+  @keyframes core-breathe {
+
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 14px rgba(217, 184, 52, 0.5);
+    }
+
+    50% {
+      transform: scale(1.4);
+      box-shadow: 0 0 24px rgba(217, 184, 52, 0.7);
+    }
+  }
+
+  @keyframes ring-expand {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* ── Tappable sections — subtle cursor hint ── */
+  .manifesto,
+  .journey {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* ── Nav ── */
@@ -1208,25 +1314,23 @@ footer .foot-col a:hover {
     letter-spacing: 5px;
   }
 
-  /* ── Scroll snap — only hero panels have snap-align, so only they snap ── */
-  html {
-    scroll-snap-type: y proximity;
-  }
-
-  /* ── Hero — dissolve wrapper so children are direct scroll targets ── */
+  /* ── Hero ── */
   .hero {
-    display: contents;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "right"
+      "left";
+    grid-template-rows: 100vh 100vh;
+    grid-template-rows: 100svh 100svh;
+    height: auto;
+    min-height: auto;
+    overflow: visible;
   }
 
   .hero-right {
-    order: -1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
     height: 100svh;
     overflow: hidden;
-    scroll-snap-align: start;
   }
 
   .hero-left {
@@ -1234,7 +1338,6 @@ footer .foot-col a:hover {
     justify-content: flex-end;
     height: 100vh;
     height: 100svh;
-    scroll-snap-align: start;
   }
 
   .hero .arrow-down {
