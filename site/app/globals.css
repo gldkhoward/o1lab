@@ -1151,6 +1151,11 @@ footer .foot-col a:hover {
 /* ========== RESPONSIVE — TABLETS & MOBILE ========== */
 @media (max-width: 768px) {
 
+  /* ── Scroll snap for hero sections ── */
+  html {
+    scroll-snap-type: y proximity;
+  }
+
   /* ── Hide desktop-only elements ── */
   .cursor-dot {
     display: none;
@@ -1180,7 +1185,7 @@ footer .foot-col a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100dvh;
+    height: 100svh;
     background: rgba(27, 27, 27, 0.97);
     z-index: 99;
     flex-direction: column;
@@ -1206,7 +1211,7 @@ footer .foot-col a:hover {
   .hero {
     grid-template-columns: 1fr;
     grid-template-rows: 100vh 100vh;
-    grid-template-rows: 100dvh 100dvh;
+    grid-template-rows: 100svh 100svh;
     height: auto;
     min-height: auto;
   }
@@ -1214,14 +1219,16 @@ footer .foot-col a:hover {
   .hero-right {
     order: -1;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100svh;
+    scroll-snap-align: start;
   }
 
   .hero-left {
     padding: 32px 24px 48px;
     justify-content: flex-end;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100svh;
+    scroll-snap-align: start;
   }
 
   .hero-title {
@@ -1310,7 +1317,7 @@ footer .foot-col a:hover {
   .journey {
     padding: 100px 24px;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100svh;
   }
 
   .journey-sub {
@@ -1550,7 +1557,7 @@ footer .foot-col a:hover {
 
   .hero {
     grid-template-rows: 100vh 100vh;
-    grid-template-rows: 100dvh 100dvh;
+    grid-template-rows: 100svh 100svh;
   }
 
   .hero-title {
