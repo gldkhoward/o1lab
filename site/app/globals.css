@@ -1205,19 +1205,23 @@ footer .foot-col a:hover {
   /* ── Hero ── */
   .hero {
     grid-template-columns: 1fr;
-    grid-template-rows: 55vh auto;
+    grid-template-rows: 100vh 100vh;
+    grid-template-rows: 100dvh 100dvh;
     height: auto;
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: auto;
   }
 
   .hero-right {
     order: -1;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .hero-left {
     padding: 32px 24px 48px;
     justify-content: flex-end;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .hero-title {
@@ -1305,6 +1309,8 @@ footer .foot-col a:hover {
   /* ── Journey ── */
   .journey {
     padding: 100px 24px;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .journey-sub {
@@ -1543,7 +1549,8 @@ footer .foot-col a:hover {
 @media (max-width: 480px) {
 
   .hero {
-    grid-template-rows: 50vh auto;
+    grid-template-rows: 100vh 100vh;
+    grid-template-rows: 100dvh 100dvh;
   }
 
   .hero-title {
