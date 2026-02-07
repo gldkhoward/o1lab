@@ -400,6 +400,47 @@ export default function Home() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
+  // Mobile scroll-assist: snap hero-right and hero-left into view
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(max-width: 768px)");
+    if (!mq.matches) return;
+
+    const heroRight = document.querySelector<HTMLElement>(".hero-right");
+    const heroLeft = document.querySelector<HTMLElement>(".hero-left");
+    if (!heroRight || !heroLeft) return;
+
+    const panels = [heroRight, heroLeft];
+    let scrollTimer: ReturnType<typeof setTimeout> | null = null;
+    let isSnapping = false;
+
+    const snapToNearest = () => {
+      if (isSnapping) return;
+      const vh = window.innerHeight;
+      for (const panel of panels) {
+        const rect = panel.getBoundingClientRect();
+        // If a panel is partially visible (between 15-85% offscreen), snap it
+        if (rect.top > -vh * 0.85 && rect.top < vh * 0.4 && rect.top !== 0) {
+          isSnapping = true;
+          panel.scrollIntoView({ behavior: "smooth", block: "start" });
+          setTimeout(() => { isSnapping = false; }, 800);
+          return;
+        }
+      }
+    };
+
+    const onScroll = () => {
+      if (scrollTimer) clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(snapToNearest, 120);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (scrollTimer) clearTimeout(scrollTimer);
+    };
+  }, []);
+
   // Cycle through grid layouts
   useEffect(() => {
     const id = setInterval(() => {

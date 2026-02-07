@@ -1151,11 +1151,6 @@ footer .foot-col a:hover {
 /* ========== RESPONSIVE — TABLETS & MOBILE ========== */
 @media (max-width: 768px) {
 
-  /* ── Scroll snap for hero sections ── */
-  html {
-    scroll-snap-type: y proximity;
-  }
-
   /* ── Hide desktop-only elements ── */
   .cursor-dot {
     display: none;
@@ -1220,7 +1215,6 @@ footer .foot-col a:hover {
     order: -1;
     min-height: 100vh;
     min-height: 100svh;
-    scroll-snap-align: start;
   }
 
   .hero-left {
@@ -1228,7 +1222,6 @@ footer .foot-col a:hover {
     justify-content: flex-end;
     min-height: 100vh;
     min-height: 100svh;
-    scroll-snap-align: start;
   }
 
   .hero-title {
