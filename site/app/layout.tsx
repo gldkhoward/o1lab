@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "o1 lab — from zero to one",
+  title: "lab",
   description: "Open access hardware lab. From zero to one. Sydney, AU.",
 };
 
