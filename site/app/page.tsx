@@ -152,6 +152,38 @@ function SpaceVisual() {
     mouse.current.y = -9999;
   }, []);
 
+  /* ── Touch support for mobile ── */
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect || !touch) return;
+    mouse.current.x = touch.clientX - rect.left;
+    mouse.current.y = touch.clientY - rect.top;
+    mouse.current.inside = true;
+
+    const cols = Math.ceil(rect.width / TILE_SIZE);
+    const rows = Math.ceil(rect.height / TILE_SIZE);
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const cx = c * TILE_SIZE + TILE_SIZE / 2;
+        const cy = r * TILE_SIZE + TILE_SIZE / 2;
+        const dist = Math.hypot(cx - mouse.current.x, cy - mouse.current.y);
+        if (dist < GLOW_RADIUS) {
+          const intensity = 1 - dist / GLOW_RADIUS;
+          const key = `${c},${r}`;
+          const existing = glowCells.current.get(key) || 0;
+          glowCells.current.set(key, Math.max(existing, intensity));
+        }
+      }
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    mouse.current.inside = false;
+    mouse.current.x = -9999;
+    mouse.current.y = -9999;
+  }, []);
+
   useEffect(() => {
     const container = containerRef.current;
     const canvas = canvasRef.current;
@@ -327,6 +359,8 @@ function SpaceVisual() {
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <div className="grid-lines"></div>
         <canvas ref={canvasRef} className="glow-canvas" />
@@ -354,6 +388,17 @@ function SpaceVisual() {
 export default function Home() {
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const [layoutIdx, setLayoutIdx] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
   // Cycle through grid layouts
   useEffect(() => {
@@ -442,7 +487,22 @@ export default function Home() {
             <a href="#join">Join</a>
           </li>
         </ul>
+        <button
+          className={`mobile-menu-btn${menuOpen ? " open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menu"
+        >
+          <span /><span /><span />
+        </button>
       </nav>
+
+      {/* Mobile menu overlay */}
+      <div className={`mobile-menu${menuOpen ? " open" : ""}`}>
+        <a href="#manifesto" onClick={() => setMenuOpen(false)}>About</a>
+        <a href="#space" onClick={() => setMenuOpen(false)}>The Space</a>
+        <a href="#who" onClick={() => setMenuOpen(false)}>Who</a>
+        <a href="#join" onClick={() => setMenuOpen(false)}>Join</a>
+      </div>
 
       {/* HERO */}
       <section className="hero">
