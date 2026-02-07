@@ -1202,6 +1202,11 @@ footer .foot-col a:hover {
     letter-spacing: 5px;
   }
 
+  /* ── Scroll snap for hero panels ── */
+  html {
+    scroll-snap-type: y proximity;
+  }
+
   /* ── Hero ── */
   .hero {
     grid-template-columns: 1fr;
@@ -1209,19 +1214,23 @@ footer .foot-col a:hover {
     grid-template-rows: 100svh 100svh;
     height: auto;
     min-height: auto;
+    overflow: visible;
   }
 
   .hero-right {
     order: -1;
-    min-height: 100vh;
-    min-height: 100svh;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    scroll-snap-align: start;
   }
 
   .hero-left {
     padding: 32px 24px 48px;
     justify-content: flex-end;
-    min-height: 100vh;
-    min-height: 100svh;
+    height: 100vh;
+    height: 100svh;
+    scroll-snap-align: start;
   }
 
   .hero-title {
