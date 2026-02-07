@@ -366,7 +366,7 @@ function SpaceVisual() {
         <canvas ref={canvasRef} className="glow-canvas" />
         <div className="big-zero" ref={zeroRef}></div>
         <div className="big-one" ref={oneRef}>1</div>
-        <span className="label l1">The Garage</span>
+        <span className="label l1">A place to experiment</span>
         <span className="label l2">Sydney, AU</span>
       </div>
       <div className="space-sliders">
@@ -595,12 +595,12 @@ export default function Home() {
       <section className="manifesto reveal" id="manifesto">
         <p>
           We believe the biggest barrier to making{" "}
-          <em>physical things</em> isn&apos;t talent — it&apos;s access. Access
+          <em>physical things</em> isn&apos;t talent, it&apos;s access. Access
           to tools, space, components, and someone who&apos;s been there before.
         </p>
         <p style={{ marginTop: "32px" }}>
           o1 lab is a garage. Literally. A place where <em>anyone</em> with an
-          idea can walk in and start building — no gatekeeping, no prerequisites,
+          idea can walk in and start building. No gatekeeping, no prerequisites,
           no pitch decks.
         </p>
         <span className="aside">
@@ -618,7 +618,7 @@ export default function Home() {
           <h3>Open Access</h3>
           <p>
             Walk in. Use the tools. Ask questions. Leave inspired. The lab is
-            open to anyone working on hardware — hobbyist, artist, student,
+            open to anyone working on hardware. Hobbyist, artist, student,
             whoever.
           </p>
         </div>
@@ -653,66 +653,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ZERO TO ONE JOURNEY */}
+      {/* ZERO TO ONE */}
       <section className="journey reveal" id="journey">
-        <h2 className="journey-header">
-          <span className="zero"></span> → <span className="one">1</span>
-        </h2>
-        <p
-          style={{
-            fontSize: "17px",
-            color: "var(--mid)",
-            fontWeight: 300,
-            maxWidth: "500px",
-            margin: "0 auto",
-          }}
-        >
-          We exist for that first step — the hardest one. Going from nothing to
-          something real you can hold.
-        </p>
-        <div className="journey-line"></div>
-        <div className="journey-steps">
-          <div className="step reveal">
-            <div className="step-num">Phase 01</div>
-            <h4>Spark</h4>
-            <p>
-              You have an idea — maybe vague, maybe wild. That&apos;s enough.
-              Come talk about it.
-            </p>
-          </div>
-          <div
-            className="step reveal"
-            style={{ transitionDelay: "0.1s" }}
-          >
-            <div className="step-num">Phase 02</div>
-            <h4>Shape</h4>
-            <p>
-              We help you figure out what components, tools, and skills you need.
-              No stupid questions.
-            </p>
-          </div>
-          <div
-            className="step reveal"
-            style={{ transitionDelay: "0.2s" }}
-          >
-            <div className="step-num">Phase 03</div>
-            <h4>Build</h4>
-            <p>
-              Use the lab. Break things. Fix them. Iterate. You&apos;ll leave
-              with something that works.
-            </p>
-          </div>
-          <div
-            className="step reveal"
-            style={{ transitionDelay: "0.3s" }}
-          >
-            <div className="step-num">Phase 04</div>
-            <h4>Ship</h4>
-            <p>
-              Take it to the world. Install it. Perform with it. Sell it.
-              Whatever &ldquo;done&rdquo; means to you.
-            </p>
-          </div>
+        <div className="journey-inner">
+          <h2 className="journey-header">
+            <span className="zero"></span>
+            <span className="arrow"></span>
+            <span className="one">1</span>
+          </h2>
+          <p className="journey-sub">
+            We exist for that first step. The hardest one. Going from nothing to
+            something real you can hold.
+          </p>
         </div>
       </section>
 
@@ -762,7 +714,7 @@ export default function Home() {
           </p>
           <p>
             The space runs indefinitely. It&apos;s not a pop-up. It&apos;s not a
-            6-week program. It&apos;s just here — whenever you need it.
+            6-week program. It&apos;s just here, whenever you need it.
           </p>
           <div className="detail-list">
             <span className="tag">Soldering Stations</span>
