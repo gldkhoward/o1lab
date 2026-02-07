@@ -110,6 +110,12 @@ nav {
   z-index: 2;
 }
 
+.hero-right {
+  position: relative;
+  background: var(--yellow);
+  overflow: hidden;
+}
+
 .hero-title {
   font-size: clamp(64px, 9vw, 140px);
   font-weight: 700;
@@ -1202,23 +1208,21 @@ footer .foot-col a:hover {
     letter-spacing: 5px;
   }
 
-  /* ── Scroll snap for hero panels ── */
+  /* ── Scroll snap — only hero panels have snap-align, so only they snap ── */
   html {
     scroll-snap-type: y proximity;
   }
 
-  /* ── Hero ── */
+  /* ── Hero — dissolve wrapper so children are direct scroll targets ── */
   .hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: 100vh 100vh;
-    grid-template-rows: 100svh 100svh;
-    height: auto;
-    min-height: auto;
-    overflow: visible;
+    display: contents;
   }
 
   .hero-right {
     order: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100vh;
     height: 100svh;
     overflow: hidden;
@@ -1231,6 +1235,10 @@ footer .foot-col a:hover {
     height: 100vh;
     height: 100svh;
     scroll-snap-align: start;
+  }
+
+  .hero .arrow-down {
+    display: none;
   }
 
   .hero-title {
@@ -1556,11 +1564,6 @@ footer .foot-col a:hover {
 
 /* ========== RESPONSIVE — SMALL PHONES ========== */
 @media (max-width: 480px) {
-
-  .hero {
-    grid-template-rows: 100vh 100vh;
-    grid-template-rows: 100svh 100svh;
-  }
 
   .hero-title {
     font-size: clamp(48px, 18vw, 80px);
