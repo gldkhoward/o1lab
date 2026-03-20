@@ -534,7 +534,7 @@ export default function Home() {
             <a href="#manifesto">About</a>
           </li>
           <li>
-            <a href="#space">The Space</a>
+            <a href="#spaces">The Spaces</a>
           </li>
           <li>
             <a href="#who">Who</a>
@@ -555,7 +555,7 @@ export default function Home() {
       {/* Mobile menu overlay */}
       <div className={`mobile-menu${menuOpen ? " open" : ""}`}>
         <a href="#manifesto" onClick={() => setMenuOpen(false)}>About</a>
-        <a href="#space" onClick={() => setMenuOpen(false)}>The Space</a>
+        <a href="#spaces" onClick={() => setMenuOpen(false)}>The Spaces</a>
         <a href="#who" onClick={() => setMenuOpen(false)}>Who</a>
         <a href="#join" onClick={() => setMenuOpen(false)}>Join</a>
       </div>
@@ -678,13 +678,83 @@ export default function Home() {
           to tools, space, components, and someone who&apos;s been there before.
         </p>
         <p style={{ marginTop: "32px" }}>
-          o1 lab is a garage. Literally. A place where <em>anyone</em> with an
-          idea can walk in and start building. No gatekeeping, no prerequisites,
-          no pitch decks.
+          o1 lab creates free, open-access spaces where <em>anyone</em> with an
+          idea can walk in and start building. We provide the equipment, the
+          expertise, and the support — you bring the curiosity. No gatekeeping,
+          no prerequisites, no pitch decks.
         </p>
         <span className="aside">
-          Not a startup. Not an incubator. Just a really good garage.
+          Not a startup. Not an incubator. Just really good spaces with the
+          right stuff in them.
         </span>
+      </section>
+
+      {/* SPACES */}
+      <section className="spaces-section" id="spaces">
+        <div className="spaces-header reveal">
+          <div className="spaces-header-inner">
+            <span className="spaces-label">Our Spaces</span>
+            <p className="spaces-intro">
+              We partner with communities and organisations across Sydney to
+              create free, open-access spaces for builders. Each space is
+              different, but the mission is the same.
+            </p>
+          </div>
+        </div>
+
+        <div className="spaces-item reveal">
+          <div className="spaces-item-img">
+            <img src="/labs/drumlab.jpeg" alt="o1 lab at Arrayah — Drummoyne workshop" />
+          </div>
+          <div className="spaces-item-text">
+            <div className="spaces-card-header">
+              <h3>Arrayah</h3>
+              <span className="spaces-pill open">Open</span>
+            </div>
+            <span className="spaces-location">Drummoyne, Sydney</span>
+            <p>
+              Our first space, embedded in the Arrayah hackerhouse community.
+              Set up alongside builders and founders, with the essentials for
+              quick prototyping and tinkering — 3D printers, soldering
+              stations, electronics, components, and people who know how to
+              use them.
+            </p>
+            <div className="spaces-tags">
+              <span className="tag">3D Printers</span>
+              <span className="tag">Electronics</span>
+              <span className="tag">Soldering</span>
+              <span className="tag">Components</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="spaces-item reverse reveal">
+          <div className="spaces-item-img soon">
+            <img src="/labs/redfern1.png" alt="o1 lab at Assembly — Redfern" />
+            <span className="spaces-soon-tag">Coming Soon</span>
+          </div>
+          <div className="spaces-item-text">
+            <div className="spaces-card-header">
+              <h3>Assembly</h3>
+              <span className="spaces-pill soon">Coming Soon</span>
+            </div>
+            <span className="spaces-location">Redfern, Sydney</span>
+            <p>
+              The next iteration of o1 lab. A dedicated space in Redfern — at
+              the intersection of tech and deep tech in Sydney, on the
+              doorstep of universities and innovation hubs. A collaboration
+              between multiple entities to create something bigger for the
+              community.
+            </p>
+            <div className="spaces-tags">
+              <span className="tag">Full Workshop</span>
+              <span className="tag">Advanced Prototyping</span>
+              <span className="tag">PCB Lab</span>
+              <span className="tag">Event Space</span>
+              <span className="tag">Community Hub</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* WHAT CARDS */}
@@ -696,9 +766,9 @@ export default function Home() {
           </span>
           <h3>Open Access</h3>
           <p>
-            Walk in. Use the tools. Ask questions. Leave inspired. The lab is
-            open to anyone working on hardware. Hobbyist, artist, student,
-            whoever.
+            Walk in. Use the tools. Ask questions. Leave inspired. Every o1 lab
+            space is open to anyone working on hardware — hobbyist, artist,
+            student, whoever.
           </p>
         </div>
         <div
@@ -726,8 +796,8 @@ export default function Home() {
           <h3>Community</h3>
           <p>
             Cross-pollination between artists, engineers, musicians, and
-            tinkerers. The best ideas happen when different worlds collide in a
-            garage.
+            tinkerers. The best ideas happen when different worlds collide in
+            the same room.
           </p>
         </div>
       </section>
@@ -785,15 +855,15 @@ export default function Home() {
       <section className="space-section" id="space">
         <SpaceVisual />
         <div className="space-text reveal">
-          <h2>A garage with the right stuff in it</h2>
+          <h2>Stocked and ready</h2>
           <p>
-            We&apos;re sourcing components and equipment so you don&apos;t have
-            to wait 3 weeks for a shipment from Shenzhen. Walk in, grab what you
-            need, start building.
+            Every o1 lab space is kitted out so you don&apos;t have to wait
+            3 weeks for a shipment from Shenzhen. Walk in, grab what you need,
+            start building.
           </p>
           <p>
-            The space runs indefinitely. It&apos;s not a pop-up. It&apos;s not a
-            6-week program. It&apos;s just here, whenever you need it.
+            Our spaces run indefinitely. Not a pop-up. Not a 6-week program.
+            Just here, whenever you need them.
           </p>
           <div className="detail-list">
             <span className="tag">Soldering Stations</span>
@@ -849,7 +919,7 @@ export default function Home() {
         <div className="foot-col">
           <h5>Links</h5>
           <a href="#manifesto">About</a>
-          <a href="#space">The Space</a>
+          <a href="#spaces">The Spaces</a>
           <a href="#who">Who It&apos;s For</a>
           <a href="#join">Get Involved</a>
         </div>
@@ -862,7 +932,7 @@ export default function Home() {
         </div>
         <div className="foot-bottom">
           <p>© 2025 o1 lab</p>
-          <p>Made in a garage in Sydney</p>
+          <p>Open access hardware. Sydney, AU.</p>
         </div>
       </footer>
     </>

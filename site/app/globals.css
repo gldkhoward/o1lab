@@ -404,6 +404,176 @@ nav {
   display: block;
 }
 
+/* ========== SPACES ========== */
+.spaces-section {
+  padding: 0 0 120px;
+}
+
+.spaces-header {
+  background: var(--dark);
+  padding: 80px 48px;
+  margin-bottom: 120px;
+}
+
+.spaces-header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.spaces-label {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--yellow);
+  display: block;
+  margin-bottom: 24px;
+}
+
+.spaces-intro {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--cream);
+  max-width: 700px;
+  margin: 0 auto;
+  letter-spacing: -0.3px;
+}
+
+.spaces-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+}
+
+.spaces-item + .spaces-item {
+  border-top: 1px solid rgba(27, 27, 27, 0.08);
+}
+
+.spaces-item-img {
+  position: relative;
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.spaces-item-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.spaces-item:hover .spaces-item-img img {
+  transform: scale(1.04);
+}
+
+.spaces-item-img.soon img {
+  filter: grayscale(0.4) brightness(0.75);
+}
+
+.spaces-soon-tag {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: var(--yellow);
+  color: var(--dark);
+  padding: 8px 16px;
+  border-radius: 999px;
+  z-index: 1;
+}
+
+.spaces-item-text {
+  padding: 64px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.spaces-item.reverse {
+  direction: rtl;
+}
+
+.spaces-item.reverse > * {
+  direction: ltr;
+}
+
+.spaces-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.spaces-item-text h3 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--dark);
+}
+
+.spaces-location {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--grey);
+  display: block;
+  margin-bottom: 24px;
+}
+
+.spaces-pill {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1.5px solid;
+}
+
+.spaces-pill.open {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.spaces-pill.soon {
+  border-color: var(--grey);
+  color: var(--grey);
+}
+
+.spaces-item-text p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--mid);
+  margin-bottom: 28px;
+}
+
+.spaces-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.spaces-tags .tag {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--dark);
+  color: var(--dark);
+}
+
 /* ========== WHAT IS THIS ========== */
 .what-section {
   padding: 80px 48px 160px;
@@ -1404,6 +1574,51 @@ footer .foot-col a:hover {
   .manifesto .aside {
     margin-top: 32px;
     font-size: 10px;
+  }
+
+  /* ── Spaces ── */
+  .spaces-section {
+    padding: 0 0 80px;
+  }
+
+  .spaces-header {
+    padding: 56px 24px;
+    margin-bottom: 80px;
+  }
+
+  .spaces-intro {
+    font-size: clamp(18px, 4.5vw, 24px);
+  }
+
+  .spaces-item {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .spaces-item.reverse {
+    direction: ltr;
+  }
+
+  .spaces-item-img {
+    aspect-ratio: 3 / 2;
+  }
+
+  .spaces-item-text {
+    padding: 32px 24px;
+  }
+
+  .spaces-item-text h3 {
+    font-size: 22px;
+  }
+
+  .spaces-item-text p {
+    font-size: 15px;
+  }
+
+  .spaces-tags .tag {
+    font-size: 9px;
+    padding: 7px 14px;
+    letter-spacing: 1px;
   }
 
   /* ── What Cards ── */
